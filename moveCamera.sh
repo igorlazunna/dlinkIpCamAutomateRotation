@@ -35,7 +35,7 @@ if [ -f $LAST_LOCATION_FILE ]; then
 else
    log -d -n "File $LAST_LOCATION_FILE does not exist, I'm going to create it..."
    touch $LAST_LOCATION_FILE
-   log -d "Done"
+   log " done"
    echo $HOME_LOCATION > $LAST_LOCATION_FILE
    log -d "Set LAST_LOCATION to HOME_LOCATION"
 fi
@@ -59,10 +59,10 @@ log -d -n "Move camera to new location $LOCATION...";
 
 HTTP_CODE=$(curl -m 5 --silent --write-out "%{http_code}\n" --user $USER:$PWD --user-agent "user" --data "PanTiltPresetPositionMove=$LOCATION" $URL);
 if [ $HTTP_CODE == 204 ]; then 
-	log -d "done";
+	log " done";
 	log -d -n "Store last location value ($LOCATION) into $LAST_LOCATION_FILE..."
 	echo $LOCATION > $LAST_LOCATION_FILE
-	log -d "done";
+	log " done";
 else 
 	log -d "failed"
 	log -d "Moving camera to location value ($LOCATION) failed"
