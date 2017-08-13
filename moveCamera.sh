@@ -9,13 +9,14 @@ CAMIP="192.168.0.100" #Your camera IP Address
 MIN_CUST_LOCATION=1 #Your first defined Custom location
 MAX_CUST_LOCATION=3 #Your last defined Custom Location
 HOME_LOCATION=0 #Put the number corresponding to your home location
+BASE_PATH=/full/path/to/script/folder #Put full PATH
 ###################################################################
 ##                     END OF USER DEFINED VALUES                ##
 ###################################################################
 
 URL="http://$CAMIP/pantiltcontrol.cgi"
-LOGFILE="./log/moveCamera.log"
-LAST_LOCATION_FILE="./cache/camLastPos"
+LOGFILE="$BASE_PATH/log/moveCamera.log"
+LAST_LOCATION_FILE="$BASE_PATH/cache/camLastPos"
 LOCATION=0
 
 log() {
@@ -30,7 +31,7 @@ log() {
 
 #Check whether the Last Location file exist; if yes read last location, otherwise create
 if [ -f $LAST_LOCATION_FILE ]; then
-   log -d -n "File $LAST_LOCATION_FILE exists"
+   log -d "File $LAST_LOCATION_FILE exists"
 else
    log -d -n "File $LAST_LOCATION_FILE does not exist, I'm going to create it..."
    touch $LAST_LOCATION_FILE
